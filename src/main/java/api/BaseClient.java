@@ -2,7 +2,6 @@ package api;
 
 import data.Token;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 
 import java.util.Properties;

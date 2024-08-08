@@ -13,6 +13,6 @@ Feature: Parcel lockers list
     Examples:
       | city      |
       | Sopot     |
-#      | Tychy     |
-#      | Jastarnia |
-#      | Zakopane  |
+      | Tychy     |
+      | Jastarnia |
+      | Zakopane  |

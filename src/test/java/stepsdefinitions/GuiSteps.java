@@ -1,5 +1,6 @@
 package stepsdefinitions;
 
+import drivers.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -11,7 +12,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.TrackParcelPage;
 
 import java.io.File;
@@ -22,7 +22,7 @@ public class GuiSteps extends Base {
 
     @Before(value = "@GuiTests")
     public void setup() {
-        driver = new ChromeDriver();
+        driver = new Driver().getDriver();
         driver.manage().window().maximize();
         basePage = properties.getProperty("basePage");
         driver.get(basePage);

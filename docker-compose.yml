@@ -1,0 +1,26 @@
+services:
+  selenium:
+    image: selenium/standalone-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+    expose:
+      - 4444
+
+  maven_container:
+    build:
+      context: .
+      secrets:
+        - token
+    depends_on:
+      - selenium
+    environment:
+      env: "prod"
+      grid: "http://172.18.0.2:4444/wd/hub"
+    secrets:
+      - token
+
+secrets:
+  token:
+    file: ./token.txt

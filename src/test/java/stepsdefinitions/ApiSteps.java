@@ -3,7 +3,7 @@ package stepsdefinitions;
 import api.BaseClient;
 import api.points.response.ItemsItem;
 import api.points.response.PointsResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import helpers.SaveFile;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -15,7 +15,6 @@ import io.restassured.specification.RequestSpecification;
 import models.ParcelLockerData;
 import org.assertj.core.api.Assertions;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +70,8 @@ public class ApiSteps extends Base {
         pointsResponse.getItems().forEach(
                 pl -> parcelLockerDataList.add(getParcelLocalData(pl))
         );
-        saveJsonFile(parcelLockerDataList, fileName);
+        final String path = String.format("./target/%s", fileName);
+        new SaveFile(parcelLockerDataList, path).saveFile();
     }
 
     private boolean checkIfAllReturnedParcelLockersHaveCity(final PointsResponse pointsResponse, final String city) {
@@ -84,15 +84,5 @@ public class ApiSteps extends Base {
         parcelLockerData.setPostalCode(parcelLockerItem.getAddressDetails().getPostCode());
         parcelLockerData.setCoordinates(parcelLockerItem.getLocation());
         return parcelLockerData;
-    }
-
-    private void saveJsonFile(final Object object, final String fileName) {
-        final String pathName = String.format("./target/%s", fileName);
-        try {
-            new ObjectMapper().writeValue(new File(pathName), object);
-            System.out.println("File saved");
-        } catch (Exception e) {
-            System.out.println("Exception while creating json " + e.getMessage());
-        }
     }
 }
