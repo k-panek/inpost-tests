@@ -1,0 +1,25 @@
+services:
+  selenium:
+    image: selenium/standalone-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+    expose:
+      - 4444
+
+  maven_container:
+    build: .
+    depends_on:
+      - selenium
+    environment:
+      env:
+      grid:
+      tag:
+      token_file: /run/secrets/token
+    secrets:
+      - token
+
+secrets:
+  token:
+    file: ${token_file}
