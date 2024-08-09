@@ -71,7 +71,7 @@ public class ApiSteps extends Base {
                 pl -> parcelLockerDataList.add(getParcelLocalData(pl))
         );
         final String path = String.format("./target/%s", fileName);
-        new SaveFile(parcelLockerDataList, path).saveFile();
+        SaveFile.saveFile(parcelLockerDataList, path);
     }
 
     private boolean checkIfAllReturnedParcelLockersHaveCity(final PointsResponse pointsResponse, final String city) {

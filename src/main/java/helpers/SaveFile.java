@@ -5,19 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 
 public class SaveFile {
-
-    Object object;
-    String path;
-
-    public SaveFile(final Object object, final String path) {
-        this.object = object;
-        this.path = path;
-    }
-
-    public void saveFile() {
+    public static void saveFile(final Object object, final String path) {
         try {
             new ObjectMapper().writeValue(new File(path), object);
-            System.out.println("File saved");
+            System.out.println("File saved to " + path);
         } catch (Exception e) {
             System.out.println("Exception while saving file " + e.getMessage());
         }

@@ -9,18 +9,17 @@ services:
       - 4444
 
   maven_container:
-    build:
-      context: .
-      secrets:
-        - token
+    build: .
     depends_on:
       - selenium
     environment:
-      env: "prod"
-      grid: "http://172.18.0.2:4444/wd/hub"
+      env:
+      grid:
+      tag:
+      token_file: /run/secrets/token
     secrets:
       - token
 
 secrets:
   token:
-    file: ./token.txt
+    file: ${token_file}
