@@ -24,6 +24,7 @@ Variables:
 - grid - mandatory to GUI tests on docker - selenium grid url
 - tag - optional - cucumber tests tag
 
-Screenshot after every (GUI test) fail is saved to ./target/screenshots/{scenario.name}-{scenario.id}
-HTML report with tests results is saved to ./target/cucumber-reports/cucumber.html
-JSON files with parcel lockers list are saved to ./target/parcellockers.{city}.json
+Additional info:
+- Screenshot after every (GUI test) fail is saved to ./target/screenshots/{scenario.name}-{scenario.id}
+- HTML report with tests results is saved to ./target/cucumber-reports/cucumber.html
+- JSON files with parcel lockers list are saved to ./target/parcellockers.{city}.json
